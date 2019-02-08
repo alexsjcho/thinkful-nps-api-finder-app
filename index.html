@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Thinkful Asynchronous Web App API Assignment: GET Request with Complex Data"
+    />
+    <meta name="author" content="Alex Cho - Thinkful Student" />
+    <title>National Parks Service API Finder App</title>
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/4/slate/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body></body>
+
+  <body>
+    <nav class="navbar">
+      <a id="app-title" class="navbar-brand" href="#"
+        >National Parks Service API Finder App</a
+      >
+    </nav>
+
+    <main role="main" class="container">
+      <section class="app-container">
+        <form id="search-form">
+          <h1>Search U.S. National Parks</h1>
+          <p>
+            Enter the name of a national park
+          </p>
+          <input
+            type="text"
+            id="park-name-input"
+            class="form-control"
+            placeholder="Find a national park"
+          />
+          <br />
+          <p>
+            Number of parks you want to review
+          </p>
+          <input
+            type="text"
+            id="park-number-input"
+            class="form-control"
+            placeholder="10 park results?"
+          />
+          <input
+            id="submit-button"
+            class="btn btn-primary"
+            type="submit"
+            value="Submit"
+          />
+        </form>
+      </section>
+      <section class="display-results-container hidden">
+        <div id="display-profile"></div>
+      </section>
+    </main>
+
+    <!-- /.container -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="logic.js"></script>
+  </body>
 </html>

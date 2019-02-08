@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+#app-title {
+  background-color: rgb(6, 116, 64);
+}
+.navbar {
+  background-color: green;
+}
+
+.app-container {
+  margin-top: 15%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+h1 {
+  color: rgb(171, 197, 24);
+}
