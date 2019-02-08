@@ -18,34 +18,64 @@ function watchSubmitForm() {
   });
 }
 
+//Format Search Query via Params
+function formatQueryParams(params) {
+  console.log("formatQueryParams function works!");
+  const queryItems = Object.keys(params).map(
+    key => `${stateCode(key)} = ${stateCode(params[key])}`
+  );
+  return queryItems.join("&");
+}
+
 //GET Request to National Parks Service API
-function getNationalParks() {
+function getNationalParks(queryItems, numResults = 10) {
   console.log("getNationalPark works!");
+
   const params = {
     key: apiKey,
     q: query,
     numResults
   };
+
+  const queryString = formatQueryParams(params);
+  const url = searchURL + "?" + queryString;
+
+  //Test in console whether we get the right search query
+  console.log(url);
+
+  fetch(searchURL)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
+    .then(responseJson => displayResults(responseJson))
+    .catch(err => {
+      alert("Something went wrong, try again!");
+    });
 }
 
 //Render GET Request Results to the Dom
-function displayResults(numResults = 10) {
-  console.log("displayResult works");
+function displayResults(responseJson) {
+  console.log("displayResult function works");
   $("#results-list").empty();
-  $("#results-list").append(`<div class="panel panel-default">
+  for (let i = 0; i < responseJson.items.length; i++) {
+    $("#results-list").append(`<div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">${responseJson.data.fullName}</h3>
+      <h3 class="panel-title">${responseJson.items[i].data.fullName}</h3>
     </div>
     <div class="panel-body">
     <div class= "row>
      <div class="col-md-3">
-     <h4 class="panel-title">${responseJson.data.description}</h4>
+     <h4 class="panel-title">${responseJson.items[i].data.description}</h4>
      <p> <p>
      </div>
      <div class= "row>
      <div class="col-md-3">
-     <a href=" ${responseJson.data.url}">Visit Park's Website</a>
+     <a href=" ${responseJson.items[i].data.url}">Visit Park's Website</a>
      </div>
     </div> 
   </div>`);
+  }
+  $("#results-list").removeClass("hidden");
 }
