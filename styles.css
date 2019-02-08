@@ -29,3 +29,7 @@
 h1 {
   color: rgb(171, 197, 24);
 }
+
+.hidden {
+  display: none;
+}
