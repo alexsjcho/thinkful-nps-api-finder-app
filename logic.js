@@ -12,9 +12,10 @@ $(document).ready(function() {
 function watchSubmitForm() {
   $("#search-form").submit(e => {
     e.preventDefault();
-    console.log("it works!");
-    let searchParkName = $("#park-name-input").val();
-    let numResults = $("#park-number-input").val();
+    console.log("watchSumbitForm works!");
+    let searchState = $("#state-name-input").val();
+    let numResults = $("#number-input").val();
+    getNationalParks(searchState, numResults);
   });
 }
 
