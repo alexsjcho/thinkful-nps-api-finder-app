@@ -10,9 +10,9 @@ $(document).ready(function() {
 
 //Watch the Submit Form Listeners
 function watchSubmitForm() {
+  console.log("watchSumbitForm works!");
   $("#search-form").submit(e => {
     e.preventDefault();
-    console.log("watchSumbitForm works!");
     let searchState = $("#state-name-input").val();
     let numResults = $("#number-input").val();
     getNationalParks(searchState, numResults);
@@ -29,7 +29,7 @@ function formatQueryParams(params) {
 }
 
 //GET Request to National Parks Service API
-function getNationalParks(queryItems, numResults = 10) {
+function getNationalParks(query, numResults = 10) {
   console.log("getNationalPark works!");
 
   const params = {
