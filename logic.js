@@ -1,7 +1,7 @@
 "use strict";
 
 const apiKey = "yygjdYlxpEOToOYgnK75ZwZ4OmUTOssFQrsKZ5Kd";
-const searchURL = "https://api.nps.gov/api/v1/";
+const searchURL = "https://api.nps.gov/api/v1/parks";
 
 //Activate the Form Event Listner
 $(document).ready(function() {
@@ -23,7 +23,7 @@ function watchSubmitForm() {
 function formatQueryParams(params) {
   console.log("formatQueryParams function works!");
   const queryItems = Object.keys(params).map(
-    key => `${stateCode(key)} = ${stateCode(params[key])}`
+    key => `${encodeURIComponent(key)} = ${encodeURIComponent(params[key])}`
   );
   return queryItems.join("&");
 }
