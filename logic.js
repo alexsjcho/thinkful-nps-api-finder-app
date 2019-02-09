@@ -29,14 +29,13 @@ function formatQueryParams(params) {
 }
 
 //GET Request to National Parks Service API
-function getNationalParks(query, numResults = 10) {
+function getNationalParks(query, limit = 10) {
   console.log("getNationalPark works!");
 
   const params = {
     key: apiKey,
-    q: query,
-    numResults,
-    stateCode: "string"
+    stateCode: query,
+    limit
   };
 
   const queryString = formatQueryParams(params);
