@@ -33,9 +33,9 @@ function getNationalParks(query, limit = 10) {
   console.log("getNationalPark works!");
 
   const params = {
-    key: apiKey,
     stateCode: query,
-    limit
+    limit,
+    key: apiKey
   };
 
   const queryString = formatQueryParams(params);
