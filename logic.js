@@ -35,7 +35,8 @@ function getNationalParks(query, numResults = 10) {
   const params = {
     key: apiKey,
     q: query,
-    numResults
+    numResults,
+    stateCode: "string"
   };
 
   const queryString = formatQueryParams(params);
