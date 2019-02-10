@@ -46,9 +46,7 @@ function getNationalParks(query, limit = 10) {
 
   fetch(url)
     .then(response => {
-      console.log(response);
       if (response.ok) {
-        console.log(response.json);
         return response.json();
       }
     })
@@ -62,10 +60,10 @@ function getNationalParks(query, limit = 10) {
 //Render GET Request Results to the Dom
 function displayResults(responseJson) {
   console.log("displayResult function works");
-  console.log(responseJson);
   $("#results-list").empty();
   for (let i = 0; i < responseJson.data.length; i++) {
-    $("#results-list").append(`<div class="panel panel-default">
+    $("#results-list").append(`<br> <br>
+    <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">${responseJson.data[i].fullName}</h3>
     </div>
