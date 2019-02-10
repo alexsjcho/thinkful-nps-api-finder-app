@@ -23,7 +23,7 @@ function watchSubmitForm() {
 function formatQueryParams(params) {
   console.log("formatQueryParams function works!");
   const queryItems = Object.keys(params).map(
-    key => `${encodeURIComponent(key)} = ${encodeURIComponent(params[key])}`
+    key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
   );
   return queryItems.join("&");
 }
@@ -35,7 +35,7 @@ function getNationalParks(query, limit = 10) {
   const params = {
     stateCode: query,
     limit,
-    key: apiKey
+    api_key: apiKey
   };
 
   const queryString = formatQueryParams(params);
@@ -44,14 +44,17 @@ function getNationalParks(query, limit = 10) {
   //Test in console whether we get the right search query
   console.log(url);
 
-  fetch(searchURL)
+  fetch(url)
     .then(response => {
+      console.log(response);
       if (response.ok) {
+        console.log(response.json);
         return response.json();
       }
     })
     .then(responseJson => displayResults(responseJson))
     .catch(err => {
+      console.log(err);
       alert("Something went wrong, try again!");
     });
 }
@@ -59,21 +62,22 @@ function getNationalParks(query, limit = 10) {
 //Render GET Request Results to the Dom
 function displayResults(responseJson) {
   console.log("displayResult function works");
+  console.log(responseJson);
   $("#results-list").empty();
-  for (let i = 0; i < responseJson.items.length; i++) {
+  for (let i = 0; i < responseJson.data.length; i++) {
     $("#results-list").append(`<div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">${responseJson.items[i].data.fullName}</h3>
+      <h3 class="panel-title">${responseJson.data[i].data.fullName}</h3>
     </div>
     <div class="panel-body">
     <div class= "row>
      <div class="col-md-3">
-     <h4 class="panel-title">${responseJson.items[i].data.description}</h4>
+     <h4 class="panel-title">${responseJson.data[i].data.description}</h4>
      <p> <p>
      </div>
      <div class= "row>
      <div class="col-md-3">
-     <a href=" ${responseJson.items[i].data.url}">Visit Park's Website</a>
+     <a href=" ${responseJson.data[i].url}">Visit Park's Website</a>
      </div>
     </div> 
   </div>`);
